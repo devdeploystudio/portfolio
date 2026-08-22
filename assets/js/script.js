@@ -405,9 +405,15 @@ function initTestimonials() {
     if (!dragging) return;
     dragDeltaX = e.clientX - dragStartX;
     const deltaY = e.clientY - dragStartY;
+    const absX = Math.abs(dragDeltaX);
+    const absY = Math.abs(deltaY);
 
-    if (dragAxis === null && (Math.abs(dragDeltaX) > 6 || Math.abs(deltaY) > 6)) {
-      dragAxis = Math.abs(dragDeltaX) > Math.abs(deltaY) ? 'x' : 'y';
+    // un swipe real casi nunca es 100% horizontal: el dedo siempre tiembla
+    // un poco en el otro eje. Le damos ventaja al gesto horizontal (que es
+    // lo que se espera acá) y solo lo tratamos como scroll de página si lo
+    // vertical es claramente más grande, no apenas un poco.
+    if (dragAxis === null && (absX > 10 || absY > 10)) {
+      dragAxis = absY > absX * 1.3 ? 'y' : 'x';
     }
     if (dragAxis === 'y') return;
 
@@ -428,6 +434,9 @@ function initTestimonials() {
   };
   track.addEventListener('pointerup', endDrag);
   track.addEventListener('pointercancel', endDrag);
+  // por si en algún dispositivo setPointerCapture no agarra bien y el dedo
+  // se corre fuera de la tarjeta a mitad del gesto: igual cerramos el drag.
+  track.addEventListener('pointerleave', endDrag);
 
   render();
   start();
