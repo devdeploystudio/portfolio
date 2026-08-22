@@ -381,29 +381,46 @@ function initTestimonials() {
   // deslizar con el dedo (o el mouse) para pasar de testimonio, en vez de
   // depender solo de los puntos o de esperar al autoplay
   let dragStartX = 0;
+  let dragStartY = 0;
   let dragDeltaX = 0;
   let dragging = false;
+  let dragAxis = null; // 'x' (arrastre del carrusel) | 'y' (scroll de página) | null sin definir aún
 
   track.addEventListener('pointerdown', (e) => {
     dragging = true;
+    dragAxis = null;
     dragStartX = e.clientX;
+    dragStartY = e.clientY;
     dragDeltaX = 0;
     track.classList.add('is-dragging');
     try { track.setPointerCapture(e.pointerId); } catch (err) {}
     stop();
   });
 
+  // con touch-action:pan-y el navegador decide solo, con el primer
+  // movimiento, si esto es un scroll vertical: si no le avisamos con
+  // preventDefault que es un arrastre horizontal, nos cancela el gesto
+  // (pointercancel) antes de que el swipe llegue a hacer nada.
   track.addEventListener('pointermove', (e) => {
     if (!dragging) return;
     dragDeltaX = e.clientX - dragStartX;
+    const deltaY = e.clientY - dragStartY;
+
+    if (dragAxis === null && (Math.abs(dragDeltaX) > 6 || Math.abs(deltaY) > 6)) {
+      dragAxis = Math.abs(dragDeltaX) > Math.abs(deltaY) ? 'x' : 'y';
+    }
+    if (dragAxis === 'y') return;
+
+    e.preventDefault();
     track.style.transform = `translateX(calc(-${index * 100}% + ${dragDeltaX}px))`;
-  });
+  }, { passive: false });
 
   const endDrag = () => {
     if (!dragging) return;
     dragging = false;
     track.classList.remove('is-dragging');
     const threshold = track.getBoundingClientRect().width * 0.15;
+    if (dragAxis === 'y') { dragDeltaX = 0; return; }
     if (dragDeltaX <= -threshold) goTo(index + 1, true);
     else if (dragDeltaX >= threshold) goTo(index - 1, true);
     else { render(); restart(); }
