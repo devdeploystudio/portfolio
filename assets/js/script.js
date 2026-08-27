@@ -357,6 +357,7 @@ function initTestimonials() {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.setAttribute('aria-label', `Ver testimonio ${i + 1}`);
+    dot.innerHTML = '<span class="testi-dot__mark" aria-hidden="true"></span>';
     dot.addEventListener('click', () => goTo(i, true));
     dotsWrap.appendChild(dot);
   });

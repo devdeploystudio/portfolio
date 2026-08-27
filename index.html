@@ -29,7 +29,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -43,7 +45,7 @@
 </div>
 
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-ring__inner"></span></div>
 
 <div class="noise" aria-hidden="true"></div>
 
@@ -127,7 +129,7 @@
     </div>
 
     <div class="work__grid">
-      <article class="work-card work-card--lg reveal-up" data-lightbox="0">
+      <div class="work-card work-card--lg reveal-up" data-lightbox="0">
         <div class="work-card__media">
           <img src="assets/img/trabajo-arquitectura.jpg" alt="Fachada de piedra travertino con galería de columnas y espejo de agua, luz de atardecer" loading="lazy" decoding="async">
         </div>
@@ -136,9 +138,9 @@
           <h3>Casa Travertino</h3>
           <p>Sesión de arquitectura para un estudio de diseño, foco en materialidad y luz natural.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--square reveal-up" data-lightbox="1">
+      <div class="work-card work-card--square reveal-up" data-lightbox="1">
         <div class="work-card__media">
           <img src="assets/img/retrato-estudio.jpg" alt="Retrato de estudio con luz suave y fondo neutro" loading="lazy" decoding="async">
         </div>
@@ -147,9 +149,9 @@
           <h3>Serie Estudio</h3>
           <p>Retratos corporativos para perfiles profesionales y equipos de trabajo.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--tall reveal-up" data-lightbox="2">
+      <div class="work-card work-card--tall reveal-up" data-lightbox="2">
         <div class="work-card__media">
           <img src="assets/img/hero-editorial.jpg" alt="Retrato editorial al aire libre con viento y luz dorada" loading="lazy" decoding="async">
         </div>
@@ -158,9 +160,9 @@
           <h3>Serie Horizonte</h3>
           <p>Producción editorial en exteriores para una marca de indumentaria natural.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--tall reveal-up" data-lightbox="3">
+      <div class="work-card work-card--tall reveal-up" data-lightbox="3">
         <div class="work-card__media">
           <img src="assets/img/trabajo-retrato-viento.jpg" alt="Retrato de mujer con el pelo al viento, luz cálida de atardecer junto al agua" loading="lazy" decoding="async">
         </div>
@@ -169,9 +171,9 @@
           <h3>Serie Viento</h3>
           <p>Retrato editorial en exteriores, con luz de atardecer y dirección de arte minimalista.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--lg reveal-up" data-lightbox="4">
+      <div class="work-card work-card--lg reveal-up" data-lightbox="4">
         <div class="work-card__media">
           <img src="assets/img/trabajo-villa-egeo.jpg" alt="Villa de piedra travertino frente al mar, con galería en sombra y pileta al atardecer" loading="lazy" decoding="async">
         </div>
@@ -180,9 +182,9 @@
           <h3>Villa Egeo</h3>
           <p>Producción arquitectónica en una villa de piedra travertino, para un estudio de diseño mediterráneo.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--wide reveal-up" data-lightbox="5">
+      <div class="work-card work-card--wide reveal-up" data-lightbox="5">
         <div class="work-card__media">
           <img src="assets/img/trabajo-bodegon-ambar.jpg" alt="Bodegón de un perfume junto a una vasija de cerámica y una hoja de palma seca" loading="lazy" decoding="async">
         </div>
@@ -191,9 +193,9 @@
           <h3>Bodegón en Luz Natural</h3>
           <p>Fotografía de producto y still life con luz natural para el lanzamiento de una fragancia.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--tall reveal-up" data-lightbox="6">
+      <div class="work-card work-card--tall reveal-up" data-lightbox="6">
         <div class="work-card__media">
           <img src="assets/img/trabajo-interior-calma.jpg" alt="Interior con sillón de lino, cortinas de gasa y luz de atardecer filtrada" loading="lazy" decoding="async">
         </div>
@@ -202,9 +204,9 @@
           <h3>Interior Serie Calma</h3>
           <p>Cobertura de interiorismo para un estudio de diseño, foco en texturas naturales y luz filtrada.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--wide reveal-up" data-lightbox="7">
+      <div class="work-card work-card--wide reveal-up" data-lightbox="7">
         <div class="work-card__media">
           <img src="assets/img/trabajo-ruta-costera.jpg" alt="Camino costero sinuoso entre acantilados, luz dorada de atardecer sobre el mar" loading="lazy" decoding="async">
         </div>
@@ -213,9 +215,9 @@
           <h3>Ruta al Amanecer</h3>
           <p>Editorial de paisaje sobre la costa, parte de una producción para una marca de indumentaria outdoor.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--square reveal-up" data-lightbox="8">
+      <div class="work-card work-card--square reveal-up" data-lightbox="8">
         <div class="work-card__media">
           <img src="assets/img/trabajo-dunas.jpg" alt="Dunas de arena con huellas de pisadas, luz dorada de atardecer sobre el mar" loading="lazy" decoding="async">
         </div>
@@ -224,9 +226,9 @@
           <h3>Dunas al Atardecer</h3>
           <p>Producción de paisaje costero para una editorial de viajes, luz dorada y composición minimal.</p>
         </div>
-      </article>
+      </div>
 
-      <article class="work-card work-card--square reveal-up" data-lightbox="9">
+      <div class="work-card work-card--square reveal-up" data-lightbox="9">
         <div class="work-card__media">
           <img src="assets/img/sobre-mi-camara.jpg" alt="Fotógrafa revisando tomas en su escritorio, con cámara e impresiones" loading="lazy" decoding="async">
         </div>
@@ -235,7 +237,7 @@
           <h3>Detrás de cámara</h3>
           <p>Proceso de selección y edición de una producción de paisaje.</p>
         </div>
-      </article>
+      </div>
     </div>
   </section>
 
