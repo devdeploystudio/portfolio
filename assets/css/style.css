@@ -84,19 +84,31 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round
 }
 .cursor-dot {
   width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta-2);
-  transition: opacity .2s ease, background .3s ease;
+  transition: opacity .2s ease;
 }
 /* .cursor-ring en si es solo el punto de anclaje que mueve el JS en cada frame;
-   el tamano/crecimiento se anima en el span interno con transform: scale(),
-   para que la transicion quede compuesta (no anima width/height). */
+   el tamano/crecimiento se anima en el span interno con transform: scale().
+   Los cambios de color (fondo al hacer hover, borde claro sobre fondos oscuros)
+   no se transicionan como border-color/background directamente -- esas
+   propiedades no se pueden componer en la GPU -- sino como un crossfade de
+   opacity entre capas ::before/::after ya pintadas con el color final, que
+   siempre sí se puede componer. El resultado visual es idéntico. */
 .cursor-ring { width: 0; height: 0; }
 .cursor-ring__inner {
   position: absolute; top: 0; left: 0; width: 38px; height: 38px; margin: -19px 0 0 -19px;
   border-radius: 50%; border: 1.3px solid rgba(174,89,52,.55);
-  transition: transform .25s var(--ease), opacity .2s ease, border-color .3s ease, background .3s ease;
+  transition: transform .25s var(--ease), opacity .2s ease;
 }
-.cursor-ring.is-active .cursor-ring__inner { transform: scale(1.684); background: rgba(174,89,52,.08); }
-.cursor-ring.is-light .cursor-ring__inner { border-color: rgba(246,240,229,.7); }
+.cursor-ring__inner::before,
+.cursor-ring__inner::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; opacity: 0;
+  transition: opacity .3s ease;
+}
+.cursor-ring__inner::after { background: rgba(174,89,52,.08); }
+.cursor-ring__inner::before { border: 1.3px solid rgba(246,240,229,.7); }
+.cursor-ring.is-active .cursor-ring__inner { transform: scale(1.684); }
+.cursor-ring.is-active .cursor-ring__inner::after { opacity: 1; }
+.cursor-ring.is-light .cursor-ring__inner::before { opacity: 1; }
 .cursor-dot.is-hidden, .cursor-ring.is-hidden .cursor-ring__inner { opacity: 0; }
 @media (hover: none), (pointer: coarse) {
   .cursor-dot, .cursor-ring { display: none; }
@@ -374,7 +386,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round
 }
 .field input.is-invalid, .field select.is-invalid, .field textarea.is-invalid { border-color: var(--danger); }
 .field textarea { resize: vertical; min-height: 100px; }
-.contact__note { font-size: 13.5px; color: var(--terracotta); min-height: 18px; }
+.contact__note { font-size: 13.5px; color: var(--terracotta-text); min-height: 18px; }
 .form-alert {
   display: flex; align-items: center; gap: 8px; background: var(--danger-soft); color: var(--danger);
   border: 1px solid rgba(178,59,46,.25); border-radius: var(--radius-sm); padding: 12px 14px;
