@@ -504,3 +504,33 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
+
+/* ============ 404 ============ */
+.notfound-nav {
+  display: flex; align-items: center;
+  padding: 26px clamp(20px, 5vw, 64px);
+}
+.notfound-nav__brand {
+  font-family: var(--ff-display); font-weight: 600; font-size: 19px;
+  letter-spacing: -.01em; color: var(--ink);
+}
+.notfound {
+  min-height: 68vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 18px;
+  padding: 40px clamp(20px, 5vw, 64px) 80px;
+}
+.notfound .kicker { justify-content: center; }
+.notfound__code {
+  font-family: var(--ff-display); font-weight: 600;
+  font-size: clamp(96px, 20vw, 220px); line-height: 1; letter-spacing: -.02em;
+  color: var(--terracotta);
+}
+.notfound__text {
+  max-width: 480px; color: var(--ink-soft); font-size: 17px; line-height: 1.6;
+}
+.notfound .btn { margin-top: 6px; }
+
+@media (max-width: 640px) {
+  .notfound { padding: 20px 20px 70px; }
+}

@@ -1,0 +1,5 @@
+# TODO: confirmar/actualizar la URL real al deployar
+User-agent: *
+Allow: /
+
+Sitemap: https://devdeploystudio.github.io/portfolio/sitemap.xml
